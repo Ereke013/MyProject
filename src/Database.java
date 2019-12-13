@@ -56,7 +56,6 @@ public class Database {
                 String last_name = rs.getString("last_name");
                 String otchestvo = rs.getString("otchestvo");
                 Date bday = rs.getDate("bday");
-                String diagnostic = rs.getString("diagnostic");
                 String street = rs.getString("street");
                 int house = rs.getInt("house");
                 int apartment = rs.getInt("apartment");
