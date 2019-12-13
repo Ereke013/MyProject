@@ -4,6 +4,10 @@ import java.util.ArrayList;
 public class Reply implements Serializable {
     private String code;
     private ArrayList<Person> pers = null;
+    private ArrayList<Doctors> docs = null;
+    private ArrayList<Patient> pat = null;
+    private ArrayList<Department> dep = null;
+
 
     public void addPatient(Patient patient) {
         pers.add(patient);
@@ -13,10 +17,21 @@ public class Reply implements Serializable {
         pers.add(doc);
     }
 
-    public Reply(String code, ArrayList<Person> pers) {
-        this.code = code;
-        this.pers = pers;
+    public void listDep(Department deps){
+        dep.add(deps);
     }
+
+//    public Reply(String code, ArrayList<Person> pers) {
+//        this.code = code;
+//        this.pers = pers;
+//    }
+
+    public Reply(String code, ArrayList<Doctors> docs) {
+        this.code = code;
+        this.docs = docs;
+    }
+
+
 
     public Reply() {
     }
@@ -37,11 +52,47 @@ public class Reply implements Serializable {
         this.pers = pers;
     }
 
-    @Override
-    public String toString() {
-        return "Reply" +
-                "\n| code = '" + code + '\'' +
-                "| pers = " + pers +
+    public ArrayList<Doctors> getDocs() {
+        return docs;
+    }
+
+    public void setDocs(ArrayList<Doctors> docs) {
+        this.docs = docs;
+    }
+
+    public ArrayList<Patient> getPat() {
+        return pat;
+    }
+
+    public void setPat(ArrayList<Patient> pat) {
+        this.pat = pat;
+    }
+
+    public ArrayList<Department> getDep() {
+        return dep;
+    }
+
+    public void setDep(ArrayList<Department> dep) {
+        this.dep = dep;
+    }
+
+    public String toStringDocs() {
+        return "|code='" + code + '\'' +
+                "| docs=" + docs +
                 '|';
+    }
+
+    public String toStringPatient() {
+        return "|code='" + code + '\'' +
+                "| pat=" + pat +
+                '|';
+    }
+
+
+    public String toStringDepartment() {
+        return "Reply{" +
+                "code='" + code + '\'' +
+                ", dep=" + dep +
+                '}';
     }
 }

@@ -1,3 +1,6 @@
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -9,6 +12,8 @@ public class Main {
     public static void main(String[] args) throws Exception{
         scanner = new Scanner(System.in);
         database = new Database();
+
+
 
         //region comment last add
 //        Department doct = new Department(null, "Surgery");
@@ -84,12 +89,8 @@ public class Main {
                                     }
                                     database.removeDoctor(ch);
                                     break;
+
                                 case 6:
-
-                                    //database.removeZapisov();
-                                    break;
-
-                                case 7:
                                     System.out.println("Departments" +
                                             "\n--------------------------------");
                                     database.getDepartments().forEach(department -> System.out.println((department.toString())));
@@ -123,8 +124,8 @@ public class Main {
                                         ArrayList<Records> records =  database.getPatientRecords(patient.getId());
                                         for(Records record: records){
                                             Doctors doctor = database.getDoctor(record.getDoctor_id());
-                                            System.out.println(doctor.getFirst_name() + " " + doctor.getOtchestvo() + " " +
-                                                    doctor.getQualification() + " " + record.getDate());
+                                            System.out.println("| "+doctor.getFirst_name() + " " + doctor.getOtchestvo() + "| " +
+                                                    doctor.getQualification() + "| " + record.getDate());
                                         }
                                         break;
                                     case 2:
@@ -150,6 +151,10 @@ public class Main {
                                         String newPasswords=scanner.next();
 
                                         database.updatePassword(passwords, newPasswords, patient.getId());
+                                        break;
+
+                                    case 4:
+                                        
                                         break;
                                 }
                             }
@@ -180,8 +185,7 @@ public class Main {
         System.out.println("3. List of patients");
         System.out.println("4. Zapisy");
         System.out.println("5. Remove doctor");
-        System.out.println("6. Remove zapis");
-        System.out.println("7. List of departments");
+        System.out.println("6. List of departments");
         System.out.println("0. EXIT");
         System.out.println("Enter index: ");
     }
@@ -218,8 +222,7 @@ public class Main {
         System.out.println("Enter birthday(for example: 00.00.0000): ");
         String bday = scanner.next();
         Date date = new SimpleDateFormat("dd.MM.yyyy").parse(bday);
-        System.out.print("diagnostica: ");
-        scanner.nextLine();
+
         String diag = scanner.nextLine();
         System.out.println("Write street which your life: ");
         String street = scanner.next();

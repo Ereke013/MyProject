@@ -4,8 +4,13 @@ public class Request implements Serializable {
     private String code;
     private Doctors doctors;
     private Patient patient;
+    private Department dep;
 
     public Request() {}
+
+    public Request(String code) {
+        this.code = code;
+    }
 
     public Request(String code, Doctors doctors) {
         this.code = code;
@@ -15,6 +20,11 @@ public class Request implements Serializable {
     public Request(String code, Patient patient) {
         this.code = code;
         this.patient = patient;
+    }
+
+    public Request(String code, Department dep) {
+        this.code = code;
+        this.dep = dep;
     }
 
     public Request(String code, Doctors doctors, Patient patient) {
@@ -47,12 +57,21 @@ public class Request implements Serializable {
         this.patient = patient;
     }
 
+    public Department getDep() {
+        return dep;
+    }
+
+    public void setDep(Department dep) {
+        this.dep = dep;
+    }
+
     @Override
     public String toString() {
         return "Request" +
                 "\n|code = '" + code + '\'' +
                 "| doctors = " + doctors +
-                "| patient = " + patient +
+                "| patient = " + patient + '\''+
+                "| department = "+ dep +
                 '|';
     }
 }

@@ -15,6 +15,15 @@ public class Patient extends Person {
         this.id = id;
     }
 
+    public Patient(Long id, String first_name, String last_name, String otchestvo,  Date bday, String street, int house, int apartment) {
+        super(first_name, last_name, otchestvo);
+        this.id = id;
+        this.bday = bday;
+        this.street = street;
+        this.house = house;
+        this.apartment = apartment;
+    }
+
     public Patient(Long id, String first_name, String last_name, String otchestvo, Date bday, String diagnostic, String street, int house, int apartment, String username, String password) {
         super(first_name, last_name, otchestvo);
         this.id = id;
@@ -38,7 +47,10 @@ public class Patient extends Person {
         this.password = password;
     }
 
-
+    public Patient(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;
@@ -109,7 +121,6 @@ public class Patient extends Person {
         return "\n| id = " + id +
                 "| full name = " + getFirst_name() + " " + getLast_name() + " "+ getOtchestvo() +
                 "| bday = " + bday +
-                "| diagnostic = '" + diagnostic + '\'' +
                 "| street = '" + street + '\'' +
                 "| house = " + house +
                 "| apartment = " + apartment +

@@ -104,17 +104,16 @@ public class Database {
 
     public void addPatient(Patient patient) {
         try {
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO patient(id,first_name, last_name,otchestvo, bday, diagnostic, street, house, apartment, username, password) VALUES(NULL, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO patient(id,first_name, last_name,otchestvo, bday, street, house, apartment, username, password) VALUES(NULL, ? ,?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, patient.getFirst_name());
             ps.setString(2, patient.getLast_name());
             ps.setString(3, patient.getOtchestvo());
             ps.setDate(4, new java.sql.Date(patient.getBday().getTime()));
-            ps.setString(5, patient.getDiagnostic());
-            ps.setString(6, patient.getStreet());
-            ps.setInt(7, patient.getHouse());
-            ps.setInt(8, patient.getApartment());
-            ps.setString(9, patient.getUsername());
-            ps.setString(10, patient.getPassword());
+            ps.setString(5, patient.getStreet());
+            ps.setInt(6, patient.getHouse());
+            ps.setInt(7, patient.getApartment());
+            ps.setString(8, patient.getUsername());
+            ps.setString(9, patient.getPassword());
 
             ps.executeUpdate();
             ps.close();
@@ -348,5 +347,30 @@ public class Database {
             System.out.println(ex.getLocalizedMessage());
             return false;
         }
+    }
+
+    public Patient getPatientInfo(Long patientId) {
+        Patient patient = null;
+        try {
+            preparedStatement = conn.prepareStatement("SELECT * FROM PATIENT WHERE id = " + patientId);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                String patientFirstName = rs.getString("first_name");
+                String patientLastName = rs.getString("last_name");
+                String patientFatherName = rs.getString("otchestvo");
+                Date bday = rs.getDate("bday");
+                String street = rs.getString("street");
+                int house = rs.getInt("house");
+                int apartment = rs.getInt("apartment");
+
+                // PatientInfo id
+                patient = new Patient(patientId, patientFirstName, patientLastName, patientFatherName, bday,street,house,apartment);
+            }
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return patient;
     }
 }
