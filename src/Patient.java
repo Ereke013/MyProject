@@ -24,7 +24,7 @@ public class Patient extends Person {
         this.apartment = apartment;
     }
 
-    public Patient(Long id, String first_name, String last_name, String otchestvo, Date bday, String diagnostic, String street, int house, int apartment, String username, String password) {
+    public Patient(Long id, String first_name, String last_name, String otchestvo, Date bday, String street, int house, int apartment, String username, String password) {
         super(first_name, last_name, otchestvo);
         this.id = id;
         this.bday = bday;

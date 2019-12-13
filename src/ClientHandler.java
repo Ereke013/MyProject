@@ -42,12 +42,12 @@ public class ClientHandler extends Thread {
                     oos.writeObject(rep);
                 }
                 else  if(req.getCode().equals("view_departments")){
-                    Reply rep = new Reply();
+                    Reply rep;
 
                     for (Department dep : deps)
-                        rep.listDep(dep);
+                        database.getDepartments();
 
-                    oos.writeObject(rep);
+                    oos.writeObject(database.getDepartments());
                 }
 
                 else if (req.getCode().equals("LIST_DOC")) {

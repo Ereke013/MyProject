@@ -154,7 +154,9 @@ public class Main {
                                         break;
 
                                     case 4:
-                                        
+                                        Patient pat = database.getPatientInfo(patient.getId());
+                                        System.out.println("| Full-name: "+pat.getFirst_name() + " " + pat.getLast_name() + " " + pat.getOtchestvo() + "| birthday: " +
+                                                pat.getBday() + "| street: " + patient.getStreet() + "| house: " + pat.getHouse() + "| kvartira: " + pat.getApartment() + " |");
                                         break;
                                 }
                             }
@@ -231,7 +233,7 @@ public class Main {
         System.out.println("Kvartira: ");
         int kv = scanner.nextInt();
 
-        Patient patient = new Patient(null, fname, lname, otchestvo, date, diag, street, house, kv, nlog, npsw);
+        Patient patient = new Patient(null, fname, lname, otchestvo, date, street, house, kv, nlog, npsw);
 
         database.addPatient(patient);
 

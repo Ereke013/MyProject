@@ -63,7 +63,7 @@ public class Database {
                 String username = rs.getString("username");
                 String password = rs.getString("password");
 
-                list.add(new Patient(id, myname, last_name, otchestvo, bday, diagnostic, street, house, apartment, username, password));
+                list.add(new Patient(id, myname, last_name, otchestvo, bday, street, house, apartment, username, password));
             }
             ps.close();
         } catch (SQLException e) {
@@ -146,13 +146,13 @@ public class Database {
                 String last_name = rs.getString("last_name");
                 String otchestvo = rs.getString("otchestvo");
                 Date bday = rs.getDate("bday");
-                String diagnostic = rs.getString("diagnostic");
+
                 String street = rs.getString("street");
                 int house = rs.getInt("house");
                 int apartment = rs.getInt("apartment");
                 username = rs.getString("username");
                 password = rs.getString("password");
-                patient = new Patient(id, myname, last_name, otchestvo, bday, diagnostic, street, house, apartment, username, password);
+                patient = new Patient(id, myname, last_name, otchestvo, bday, street, house, apartment, username, password);
                 System.out.println("\nWelcome " + myname);
                 return patient;
             }

@@ -42,9 +42,9 @@ public class Client {
 
                             oos.writeObject(new Request("view_departments"));
                             rep = (Reply)ois.readObject();
-                            System.out.println(rep.getCode());
+                            System.out.println(database.getDepartments());
 
-                            database.getDepartments().forEach(department -> System.out.println(department.toString()));
+//                            database.getDepartments().forEach(department -> System.out.println(department.toString()));
                             System.out.println("Choose the department id:");
                             int dpname = scanner.nextInt();
 
@@ -77,6 +77,9 @@ public class Client {
                     if(cho == 1){
 
                     }
+                }
+                if(ch == 0){
+                    break;
                 }
             }
 
